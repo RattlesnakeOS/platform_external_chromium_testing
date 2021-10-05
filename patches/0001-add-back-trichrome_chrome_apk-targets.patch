@@ -1,17 +1,17 @@
-From 1d679df4ac04dd3948ffaca929a9cae61a784eba Mon Sep 17 00:00:00 2001
+From 02d33c589f4decc624a2afe52f97943c67350451 Mon Sep 17 00:00:00 2001
 From: Daniel Micay <danielmicay@gmail.com>
 Date: Thu, 27 May 2021 07:30:02 -0400
-Subject: [PATCH 77/77] add back trichrome_chrome_apk targets
+Subject: [PATCH 67/76] add back trichrome_chrome_apk targets
 
 ---
  chrome/android/BUILD.gn | 46 ++++++++++++++++++++++++++++++++++++++++-
  1 file changed, 45 insertions(+), 1 deletion(-)
 
 diff --git a/chrome/android/BUILD.gn b/chrome/android/BUILD.gn
-index c2f1500675dc..b8175bab3850 100644
+index a7f0f8079601b..f99c2b217e25f 100644
 --- a/chrome/android/BUILD.gn
 +++ b/chrome/android/BUILD.gn
-@@ -1994,6 +1994,10 @@ if (current_toolchain == default_toolchain) {
+@@ -2103,6 +2103,10 @@ if (current_toolchain == default_toolchain) {
      is_monochrome = true
      is_bundle_module = true
    }
@@ -22,16 +22,16 @@ index c2f1500675dc..b8175bab3850 100644
    resource_packaging("trichrome_chrome_bundle_module_pak_assets") {
      is_monochrome = false
      is_trichrome = true
-@@ -2538,7 +2542,7 @@ trichrome_library_apk_tmpl("trichrome_library_apk") {
+@@ -2657,7 +2661,7 @@ if (android_64bit_target_cpu && skip_secondary_abi_for_cq) {
  
-   if (trichrome_synchronized_proguard) {
-     webview_target = "//android_webview:trichrome_webview_apk"
--    chrome_target = ":trichrome_chrome_bundle"
-+    chrome_target = ":trichrome_chrome_apk"
-   }
+     if (trichrome_synchronized_proguard) {
+       webview_target = "//android_webview:trichrome_webview_apk"
+-      chrome_target = ":trichrome_chrome_bundle"
++      chrome_target = ":trichrome_chrome_apk"
+     }
  
-   if (_enable_manifest_verification) {
-@@ -2582,6 +2586,46 @@ android_resources("trichrome_dummy_resources") {
+     if (_enable_manifest_verification) {
+@@ -2713,6 +2717,46 @@ android_resources("trichrome_dummy_resources") {
    sources = [ "trichrome/res_dummy/values/strings.xml" ]
  }
  
@@ -79,4 +79,4 @@ index c2f1500675dc..b8175bab3850 100644
      "$root_gen_dir/chrome_public_test_apk_manifest/AndroidManifest.xml"
  chrome_public_test_vr_apk_manifest =
 -- 
-2.31.1
+2.33.0
